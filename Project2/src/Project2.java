@@ -9,6 +9,18 @@ class Bankers{
         this.available = avail;
         this.need = n;
     }
+
+    //return if vector 1(v1) is less than or equal to v2 return True else False
+    public boolean compare(int[] v1, int[]v2){
+        if(v1.length != v2.length){
+            System.out.print("Vectors are of unequal length");
+            return false;
+        }
+        for(int i = 0; i < v1.length; i++){
+            if(v1[0] > v2[0]) return false;
+        }
+        return true;
+    }
 }
 
 public class Project2{
