@@ -28,8 +28,8 @@ class Bankers{
             tempAlloc.set(requestingProcess, addVector(tempAlloc.get(requestingProcess),resources));
             tempNeed.set(requestingProcess, subtractVector(tempNeed.get(requestingProcess),resources));
             System.out.println();
-            System.out.println("Possible new state");
-            printTempState(tempAlloc, tempAvail, tempNeed);
+            // System.out.println("Possible new state");
+            // printTempState(tempAlloc, tempAvail, tempNeed);
             if(safetyAlgo(tempAlloc, tempAvail, tempNeed) == true){
                 allocation.clear();
                 allocation.addAll(tempAlloc);
@@ -60,16 +60,20 @@ class Bankers{
                 if(finish[i] == false){
                     int k;
                     for(k = 0; k < m; k++){
-                        if((need.get(i))[k] > work[k]) break;
+                        // //DEBUG
+                        // System.out.println("At i="+Integer.toString(i));
+                        // System.out.println("NEED:"+Arrays.toString(need.get(i)));
+                        // System.out.println("WORK:"+Arrays.toString(work));
+                        // System.out.println("ALLOC:"+Arrays.toString(alloc.get(i)));
+                        if((need.get(i))[k] > work[k]) {
+                            break;
+                        }
                     }
                     if(k == m){
                         safeSequence[count++]=i;
                         finish[i] = true;
                         flag = true;
-
-                        for(k = 0; k < m; k++){
-                            work = addVector(work, alloc.get(i));
-                        }
+                        work = addVector(work, alloc.get(i));
                     }
                 }
             }
@@ -171,7 +175,7 @@ public class Project2{
         // }
         ArrayList<int[]> n = new ArrayList<int[]>();
         int[] n0 = {7,4,3};
-        int[] n1 = {0,2,0};
+        int[] n1 = {1,2,2};
         int[] n2 = {6,0,0};
         int[] n3 = {0,1,1};
         int[] n4 = {4,3,1};
