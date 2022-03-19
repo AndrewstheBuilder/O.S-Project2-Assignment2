@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.stream.Stream;
 
 class Bankers{
     ArrayList<int[]> allocation;
@@ -10,6 +12,17 @@ class Bankers{
         this.need = n;
     }
 
+    public void resourceRequest(int requestingProcess,int[] resources ){
+        int[] requestedNeed = this.need.get(requestingProcess);
+
+        //First two error checks of the algo
+        //Request <= Need and Request <= Available
+        if(compare(resources, requestedNeed) && compare(resources, available)){
+
+        }
+    }
+
+
     //return if vector 1(v1) is less than or equal to v2 return True else False
     public boolean compare(int[] v1, int[]v2){
         if(v1.length != v2.length){
@@ -17,7 +30,9 @@ class Bankers{
             return false;
         }
         for(int i = 0; i < v1.length; i++){
-            if(v1[0] > v2[0]) return false;
+            if(v1[0] > v2[0]){
+                return false;
+            }
         }
         return true;
     }
@@ -52,5 +67,13 @@ public class Project2{
         n.add(n4);
         int[] avail = {2,3,0};
         Bankers b1 = new Bankers(alloc, avail, n);
+        Scanner in = new Scanner(System.in);
+        System.out.print("Enter the process making the request(0-4):");
+        int requestingProcess = Integer.parseInt(in.nextLine());
+        System.out.println("Enter resources requested(ex. 0 1 2)");
+        String strResources = in.nextLine();
+        int[] resources = Stream.of(strResources.split(" ")).mapToInt(Integer::parseInt).toArray();
+        b1.resourceRequest(requestingProcess, resources);
+
     }
 }
