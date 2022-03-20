@@ -18,7 +18,7 @@ class Bankers{
 
         //First two error checks of the algo
         //Request <= Need and Request <= Available
-        if(compare(resources, requestedNeed) && compare(resources, available)){
+        if(compare(resources, requestedNeed) && compare(resources, this.available)){
             ArrayList<int[]> tempAlloc = new ArrayList<>(this.allocation);
             int[] tempAvail = available.clone();
             ArrayList<int[]> tempNeed = new ArrayList<>(need);
@@ -149,7 +149,10 @@ class Bankers{
             return false;
         }
         for(int i = 0; i < v1.length; i++){
-            if(v1[0] > v2[0]){
+            if(v1[i] > v2[i]){
+                // //DEBUG
+                // System.out.println(Arrays.toString(v1));
+                // System.out.println(Arrays.toString(v2));
                 return false;
             }
         }
